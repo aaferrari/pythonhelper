@@ -42,7 +42,6 @@ TAGLINENUMBERS  = {}
 BUFFERTICKS     = {}
 # }}}
 
-
 # class PythonTag() {{{
 class PythonTag(object):
     # DOC {{{
@@ -751,9 +750,14 @@ highlight User1 gui=bold guifg=cyan guibg=black
 highlight User2 gui=bold guifg=black guibg=red
 " the status line will be displayed for every window
 set laststatus=2
-" set the status line to display some useful information
-set stl=%-f%r\ %2*%m%*\ \ \ \ %1*%{TagInStatusLine()}%*%=[%l:%c]\ \ \ \ [buf\ %n]
 
+if !exists("g:overwrite_statusline")
+    let g:overwrite_statusline = 1
+endif
+if g:overwrite_statusline == 1
+    " set the status line to display some useful information
+    set stl=%-f%r\ %2*%m%*\ \ \ \ %1*%{TagInStatusLine()}%*%=[%l:%c]\ \ \ \ [buf\ %n]
+endif
 " }}}
 
 " vim:foldmethod=marker
